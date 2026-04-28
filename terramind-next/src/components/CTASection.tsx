@@ -34,7 +34,7 @@ export default function CTASection() {
                 LinkedIn
               </a>
               <br />
-              Auckland · Aotearoa New Zealand
+              Christchurch · Aotearoa New Zealand
             </p>
             <a href="mailto:[email protected]" className="cta-btn">
               Email the founders <span className="arrow">→</span>

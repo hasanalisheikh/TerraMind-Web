@@ -8,7 +8,7 @@ export function useParallax(): void {
       document.querySelectorAll<HTMLElement>("[data-parallax]")
     );
     const atmosphereEls = Array.from(
-      document.querySelectorAll<HTMLElement>(".atmosphere")
+      document.querySelectorAll<HTMLElement>(".atmosphere:not(.atmosphere-dusk)")
     );
 
     let ticking = false;

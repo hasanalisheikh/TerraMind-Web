@@ -76,12 +76,12 @@ const ForecastSVG = (
       <line x1="40" y1="180" x2="380" y2="180" />
       <line x1="40" y1="240" x2="380" y2="240" />
     </g>
-    <path d="M 40 80 Q 120 70, 200 90 T 380 110 L 380 180 Q 300 170, 200 175 T 40 200 Z" fill="url(#confGrad-02)" />
-    <path d="M 200 175 Q 260 200, 320 230 L 380 240 L 380 175 Z" fill="url(#riskGrad-02)" opacity="0.6" />
-    <path d="M 40 130 Q 120 115, 200 130 Q 260 145, 320 175 L 380 195" fill="none" stroke="#1F4A30" strokeWidth="2" strokeLinecap="round" />
-    <path d="M 200 130 Q 260 165, 320 220 L 380 240" fill="none" stroke="#B89060" strokeWidth="1.5" strokeDasharray="4,3" strokeLinecap="round" />
+    <path className="forecast-band" d="M 40 80 Q 120 70, 200 90 T 380 110 L 380 180 Q 300 170, 200 175 T 40 200 Z" fill="url(#confGrad-02)" />
+    <path className="forecast-risk" d="M 200 175 Q 260 200, 320 230 L 380 240 L 380 175 Z" fill="url(#riskGrad-02)" opacity="0.6" />
+    <path className="forecast-line" d="M 40 130 Q 120 115, 200 130 Q 260 145, 320 175 L 380 195" fill="none" stroke="#1F4A30" strokeWidth="2" strokeLinecap="round" />
+    <path className="forecast-risk-line" d="M 200 130 Q 260 165, 320 220 L 380 240" fill="none" stroke="#B89060" strokeWidth="1.5" strokeDasharray="4,3" strokeLinecap="round" />
     <line x1="200" y1="50" x2="200" y2="260" stroke="#161A17" strokeWidth="0.6" strokeDasharray="2,3" opacity="0.4" />
-    <circle cx="200" cy="130" r="4" fill="#1F4A30" />
+    <circle className="forecast-now-dot" cx="200" cy="130" r="4" fill="#1F4A30" />
     <g fontFamily="Manrope, sans-serif" fontSize="10" fill="#3B413C">
       <text x="46" y="48" fontWeight="600">YIELD FORECAST</text>
       <text x="46" y="62" opacity="0.6" fontSize="9">tonnes / ha</text>
@@ -89,7 +89,7 @@ const ForecastSVG = (
       <text x="328" y="218" fontSize="9" fill="#8A6B45" fontWeight="600">↳ if frost</text>
       <text x="328" y="195" fontSize="9" fill="#1F4A30" fontWeight="600">↳ baseline</text>
     </g>
-    <g transform="translate(280, 80)">
+    <g className="forecast-confidence" transform="translate(280, 80)">
       <rect width="92" height="28" rx="14" fill="#1F4A30" />
       <text x="46" y="18" textAnchor="middle" fontFamily="Manrope, sans-serif" fontSize="11" fontWeight="700" fill="#F4F0E6">88% confidence</text>
     </g>
@@ -100,36 +100,36 @@ const FinanceSVG = (
   <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
     <rect width="400" height="300" fill="#F4F0E6" />
     <g fontFamily="Manrope, sans-serif" fontSize="11" fill="#161A17">
-      <g transform="translate(40, 40)">
+      <g className="finance-row finance-row-1" transform="translate(40, 40)">
         <rect width="320" height="40" rx="8" fill="rgba(45,94,62,0.08)" stroke="#2D5E3E" strokeWidth="0.6" />
         <circle cx="22" cy="20" r="8" fill="#2D5E3E" />
-        <path d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path className="finance-check" d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <text x="44" y="18" fontWeight="600">He Waka Eke Noa</text>
         <text x="44" y="32" opacity="0.6" fontSize="9">Emissions reporting · auto-filed Q3</text>
-        <text x="290" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10">DONE</text>
+        <text x="308" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10" textAnchor="end">DONE</text>
       </g>
-      <g transform="translate(40, 92)">
+      <g className="finance-row finance-row-2" transform="translate(40, 92)">
         <rect width="320" height="40" rx="8" fill="rgba(45,94,62,0.08)" stroke="#2D5E3E" strokeWidth="0.6" />
         <circle cx="22" cy="20" r="8" fill="#2D5E3E" />
-        <path d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path className="finance-check" d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <text x="44" y="18" fontWeight="600">Xero — Q3 ledger</text>
         <text x="44" y="32" opacity="0.6" fontSize="9">Synced 4 hours ago · 142 transactions</text>
-        <text x="285" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10">SYNCED</text>
+        <text x="308" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10" textAnchor="end">SYNCED</text>
       </g>
-      <g transform="translate(40, 144)">
+      <g className="finance-row finance-row-3" transform="translate(40, 144)">
         <rect width="320" height="40" rx="8" fill="rgba(184,144,96,0.12)" stroke="#B89060" strokeWidth="0.6" />
         <circle cx="22" cy="20" r="8" fill="none" stroke="#B89060" strokeWidth="1.4" />
         <text x="44" y="18" fontWeight="600">Freshwater Farm Plan</text>
         <text x="44" y="32" opacity="0.6" fontSize="9">Draft ready · review before May 30</text>
-        <text x="280" y="25" fill="#8A6B45" fontWeight="600" fontSize="10">REVIEW</text>
+        <text x="308" y="25" fill="#8A6B45" fontWeight="600" fontSize="10" textAnchor="end">REVIEW</text>
       </g>
-      <g transform="translate(40, 196)">
+      <g className="finance-row finance-row-4" transform="translate(40, 196)">
         <rect width="320" height="40" rx="8" fill="rgba(45,94,62,0.08)" stroke="#2D5E3E" strokeWidth="0.6" />
         <circle cx="22" cy="20" r="8" fill="#2D5E3E" />
-        <path d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path className="finance-check" d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         <text x="44" y="18" fontWeight="600">Toitū carbon report</text>
         <text x="44" y="32" opacity="0.6" fontSize="9">Generated · ready to share</text>
-        <text x="288" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10">READY</text>
+        <text x="308" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10" textAnchor="end">READY</text>
       </g>
       <text x="40" y="262" opacity="0.5" fontSize="10" fontStyle="italic">— compliance, not chased.</text>
     </g>
@@ -150,7 +150,8 @@ export default function PlatformSection() {
           </div>
           <h2 ref={titleRef} className="section-title reveal-blur">
             Three layers — hardware, forecast, finance — designed to{" "}
-            <em>work together,</em> but each one stands alone.
+            <em>work together,</em>{" "}
+            but each one stands alone.
           </h2>
         </div>
 
@@ -164,7 +165,8 @@ export default function PlatformSection() {
                 Purpose-built on-farm sensors capture what satellites and
                 weather stations miss — soil moisture in the root zone,
                 microclimate variation block-by-block, plant stress signals.{" "}
-                <em>The ground truth</em> that makes everything else honest.
+                <em>The ground truth</em>{" "}
+                that makes everything else honest.
               </>
             }
             visualization={HardwareSVG}
@@ -177,9 +179,7 @@ export default function PlatformSection() {
               <>
                 Yield, weather, and risk forecasts that surface confidence as
                 the headline, not the footnote.{" "}
-                <em>
-                  &ldquo;88% — drops to 42% if frost hits Tuesday.&rdquo;
-                </em>{" "}
+                <em>&ldquo;88% — drops to 42% if frost hits Tuesday.&rdquo;</em>{" "}
                 Decisions worth the season they&rsquo;re staking.
               </>
             }
@@ -192,8 +192,9 @@ export default function PlatformSection() {
             body={
               <>
                 Launching with Xero, He Waka Eke Noa, Toitū, and freshwater
-                farm plans — built for <em>our</em> paperwork, not adapted from
-                someone else&rsquo;s. The same approach, region by region.
+                farm plans — built for <em>our</em>{" "}
+                paperwork, not adapted from someone else&rsquo;s. The same
+                approach, region by region.
               </>
             }
             visualization={FinanceSVG}

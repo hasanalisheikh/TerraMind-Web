@@ -6,7 +6,6 @@ import MarqueeStrip from "@/components/MarqueeStrip";
 import PlatformSection from "@/components/PlatformSection";
 import WhoForSection from "@/components/WhoForSection";
 import VisionSection from "@/components/VisionSection";
-import TeamSection from "@/components/TeamSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { useParallax } from "@/hooks/useParallax";
@@ -23,7 +22,6 @@ export default function HomePage() {
         <PlatformSection />
         <WhoForSection />
         <VisionSection />
-        <TeamSection />
         <CTASection />
       </main>
       <div className="container">
