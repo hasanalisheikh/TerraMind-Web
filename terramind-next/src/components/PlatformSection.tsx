@@ -1,8 +1,16 @@
 "use client";
 
+import { useState, type KeyboardEvent, type ReactNode } from "react";
 import { useReveal } from "@/hooks/useReveal";
-import AgentCard from "./AgentCard";
 import Atmosphere from "./Atmosphere";
+
+interface LayerInfo {
+  number: "01" | "02" | "03";
+  tag: string;
+  title: string;
+  body: ReactNode;
+  preview: ReactNode;
+}
 
 const HardwareSVG = (
   <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
@@ -136,70 +144,138 @@ const FinanceSVG = (
   </svg>
 );
 
+const LAYERS: LayerInfo[] = [
+  {
+    number: "01",
+    tag: "Hardware Layer",
+    title: "Ground truth from the orchard floor.",
+    body: (
+      <>
+        Purpose-built on-farm sensors capture what satellites and weather
+        stations miss — soil moisture in the root zone, microclimate variation
+        block-by-block, plant stress signals. <em>The ground truth</em>{" "}
+        that makes everything else honest.
+      </>
+    ),
+    preview: HardwareSVG,
+  },
+  {
+    number: "02",
+    tag: "Forecast Layer",
+    title: "Probabilistic forecasting that leads with uncertainty.",
+    body: (
+      <>
+        Yield, weather, and risk forecasts that surface confidence as the
+        headline, not the footnote.{" "}
+        <em>&ldquo;88% — drops to 42% if frost hits Tuesday.&rdquo;</em>{" "}
+        Decisions worth the season they&rsquo;re staking.
+      </>
+    ),
+    preview: ForecastSVG,
+  },
+  {
+    number: "03",
+    tag: "Finance Layer",
+    title: "Cashflow and compliance, native to your region.",
+    body: (
+      <>
+        Launching with Xero, He Waka Eke Noa, Toitū, and freshwater farm plans
+        — built for <em>our</em> paperwork, not adapted from someone else&rsquo;s.
+        The same approach, region by region.
+      </>
+    ),
+    preview: FinanceSVG,
+  },
+];
+
+interface LayerCardProps {
+  layer: LayerInfo;
+  index: number;
+  isActive: boolean;
+  onActivate: (index: number) => void;
+}
+
+function LayerCard({ layer, index, isActive, onActivate }: LayerCardProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    onActivate(index);
+  };
+
+  return (
+    <article
+      className={`layer-agent-card${isActive ? " is-active" : ""}`}
+      tabIndex={0}
+      onClick={() => onActivate(index)}
+      onFocus={() => onActivate(index)}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => onActivate(index)}
+    >
+      <div className="layer-agent-summary">
+        <h3 className="layer-agent-name">{layer.tag}</h3>
+        <span className="layer-agent-number">{layer.number}</span>
+      </div>
+      <div className="layer-agent-details" aria-hidden={!isActive}>
+        <h4 className="layer-agent-title">{layer.title}</h4>
+        <p className="layer-agent-body">{layer.body}</p>
+        <a
+          href="#contact"
+          className="layer-agent-link"
+          onClick={(event) => event.stopPropagation()}
+        >
+          Talk to us <span className="arrow">→</span>
+        </a>
+      </div>
+      <div className="layer-card-preview" aria-hidden={!isActive}>
+        <div className="layer-card-preview-surface">{layer.preview}</div>
+      </div>
+    </article>
+  );
+}
+
 export default function PlatformSection() {
   const labelRef = useReveal<HTMLDivElement>();
   const titleRef = useReveal<HTMLHeadingElement>();
+  const introRef = useReveal<HTMLParagraphElement>();
+  const [activeLayer, setActiveLayer] = useState(0);
 
   return (
-    <section id="what" className="sec">
+    <section id="what" className="sec platform-section">
       <Atmosphere variant="mist" />
       <div className="container">
-        <div className="section-head">
-          <div ref={labelRef} className="section-label reveal">
-            The platform
+        <div className="platform-agents-header">
+          <div className="platform-heading-copy">
+            <div ref={labelRef} className="section-label reveal">
+              The platform
+            </div>
+            <h2 ref={titleRef} className="section-title reveal-blur">
+              Three layers — hardware, forecast, finance — designed to{" "}
+              <em>work together,</em> but each one stands alone.
+            </h2>
           </div>
-          <h2 ref={titleRef} className="section-title reveal-blur">
-            Three layers — hardware, forecast, finance — designed to{" "}
-            <em>work together,</em>{" "}
-            but each one stands alone.
-          </h2>
+          <p ref={introRef} className="platform-intro reveal">
+            The manual work behind every season — sensing block conditions,
+            forecasting yield and risk, and reconciling finance or compliance —
+            handled by focused layers that work together.
+          </p>
         </div>
 
-        <div className="agents-stack">
-          <AgentCard
-            number="01"
-            tag="Hardware Layer"
-            title="Ground truth from the orchard floor."
-            body={
-              <>
-                Purpose-built on-farm sensors capture what satellites and
-                weather stations miss — soil moisture in the root zone,
-                microclimate variation block-by-block, plant stress signals.{" "}
-                <em>The ground truth</em>{" "}
-                that makes everything else honest.
-              </>
-            }
-            visualization={HardwareSVG}
-          />
-          <AgentCard
-            number="02"
-            tag="Forecast Layer"
-            title="Probabilistic forecasting that leads with uncertainty."
-            body={
-              <>
-                Yield, weather, and risk forecasts that surface confidence as
-                the headline, not the footnote.{" "}
-                <em>&ldquo;88% — drops to 42% if frost hits Tuesday.&rdquo;</em>{" "}
-                Decisions worth the season they&rsquo;re staking.
-              </>
-            }
-            visualization={ForecastSVG}
-          />
-          <AgentCard
-            number="03"
-            tag="Finance Layer"
-            title="Cashflow and compliance, native to your region."
-            body={
-              <>
-                Launching with Xero, He Waka Eke Noa, Toitū, and freshwater
-                farm plans — built for <em>our</em>{" "}
-                paperwork, not adapted from someone else&rsquo;s. The same
-                approach, region by region.
-              </>
-            }
-            visualization={FinanceSVG}
-          />
+        <div
+          className="layer-agents-showcase"
+          onMouseLeave={() => setActiveLayer(0)}
+        >
+          <div className="layer-agents-list">
+            {LAYERS.map((layer, index) => (
+              <LayerCard
+                key={layer.number}
+                layer={layer}
+                index={index}
+                isActive={activeLayer === index}
+                onActivate={setActiveLayer}
+            />
+          ))}
         </div>
+      </div>
       </div>
     </section>
   );
