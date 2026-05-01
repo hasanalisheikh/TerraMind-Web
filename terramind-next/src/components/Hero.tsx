@@ -11,7 +11,9 @@ export default function Hero() {
           <div>
             <div className="eyebrow">
               <span className="dot" />
-              Built in Aotearoa &nbsp;·&nbsp; First prototypes · June 10, 2026
+              <span className="eyebrow-text">
+                Built in Aotearoa &nbsp;·&nbsp; First prototypes · June 10, 2026
+              </span>
             </div>
             <HeroHeadline />
             <p className="lede">

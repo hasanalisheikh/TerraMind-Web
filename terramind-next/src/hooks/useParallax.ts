@@ -12,11 +12,29 @@ export function useParallax(): void {
     );
 
     let ticking = false;
+    const compactViewport = window.matchMedia("(max-width: 720px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const resetTransforms = () => {
+      parallaxEls.forEach((el) => {
+        el.style.transform = "";
+      });
+
+      atmosphereEls.forEach((el) => {
+        el.style.transform = "";
+      });
+    };
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
+        if (compactViewport.matches || reducedMotion.matches) {
+          resetTransforms();
+          ticking = false;
+          return;
+        }
+
         const sy = window.scrollY;
 
         parallaxEls.forEach((el) => {
@@ -33,7 +51,20 @@ export function useParallax(): void {
       });
     };
 
+    const onMediaChange = () => {
+      resetTransforms();
+      onScroll();
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    compactViewport.addEventListener("change", onMediaChange);
+    reducedMotion.addEventListener("change", onMediaChange);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      compactViewport.removeEventListener("change", onMediaChange);
+      reducedMotion.removeEventListener("change", onMediaChange);
+      resetTransforms();
+    };
   }, []);
 }

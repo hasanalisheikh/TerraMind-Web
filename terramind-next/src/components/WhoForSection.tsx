@@ -44,7 +44,7 @@ export default function WhoForSection() {
     <section id="who" className="sec">
       <Atmosphere variant="harvest" />
       <div className="container">
-        <div className="section-head">
+        <div className="section-head who-section-head">
           <div ref={labelRef} className="section-label reveal">
             Who it&rsquo;s for
           </div>
