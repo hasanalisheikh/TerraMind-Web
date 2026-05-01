@@ -13,7 +13,7 @@ export default function CTASection() {
         <Atmosphere variant="dusk" grain />
         <div className="cta-content">
           <h2 ref={titleRef} className="cta-title reveal-blur">
-            Growing fruit, vines, or berries — <em>anywhere?</em>
+            Growing fruit, vines, or berries, <em>anywhere?</em>
             <br />
             We want to hear from you.
           </h2>
@@ -21,22 +21,22 @@ export default function CTASection() {
             <p>
               We&rsquo;re shipping first prototypes on June 10, 2026, and
               we&rsquo;re recruiting pilot orchards, vineyards, and growers in
-              Aotearoa right now. If you&rsquo;d like to be one — or you&rsquo;re
-              a grower anywhere who&rsquo;d want one of the next prototypes —
+              Aotearoa right now. If you&rsquo;d like to be one, or you&rsquo;re
+              a grower anywhere who&rsquo;d want one of the next prototypes,
               please reach out.
             </p>
             <p>
-              <a href="mailto:[email protected]">
-                [email protected]
+              <a href="mailto:partners@terramind.co.nz">
+                partners@terramind.co.nz
               </a>
               <br />
-              <a href="#" target="_blank" rel="noopener">
+              <a href="https://www.linkedin.com/company/terramindnz/" target="_blank" rel="noopener">
                 LinkedIn
               </a>
               <br />
               Christchurch · Aotearoa New Zealand
             </p>
-            <a href="mailto:[email protected]" className="cta-btn">
+            <a href="mailto:partners@terramind.co.nz" className="cta-btn">
               Work with us <span className="arrow">→</span>
             </a>
           </div>

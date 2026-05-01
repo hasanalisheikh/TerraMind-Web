@@ -1,6 +1,11 @@
 "use client";
 
-import { useState, type KeyboardEvent, type ReactNode } from "react";
+import {
+  useState,
+  type KeyboardEvent,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import { useReveal } from "@/hooks/useReveal";
 import Atmosphere from "./Atmosphere";
 
@@ -61,7 +66,7 @@ const HardwareSVG = (
       <text x="14" y="58" fontFamily="Manrope, sans-serif" fontSize="11" fill="#F4F0E6">Canopy temp</text>
       <text x="146" y="58" fontFamily="Manrope, sans-serif" fontSize="11" fill="#F4F0E6" fontWeight="700" textAnchor="end">14.2°C</text>
     </g>
-    <text x="20" y="290" fontFamily="Manrope, sans-serif" fontSize="10" fill="#3B413C" fontStyle="italic" opacity="0.7">— ground truth, block by block</text>
+    <text x="20" y="290" fontFamily="Manrope, sans-serif" fontSize="10" fill="#3B413C" fontStyle="italic" opacity="0.7">Ground truth, block by block</text>
   </svg>
 );
 
@@ -120,7 +125,7 @@ const FinanceSVG = (
         <rect width="320" height="40" rx="8" fill="rgba(45,94,62,0.08)" stroke="#2D5E3E" strokeWidth="0.6" />
         <circle cx="22" cy="20" r="8" fill="#2D5E3E" />
         <path className="finance-check" d="M 18 20 L 21 23 L 26 17" stroke="#F4F0E6" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="44" y="18" fontWeight="600">Xero — Q3 ledger</text>
+        <text x="44" y="18" fontWeight="600">Xero: Q3 ledger</text>
         <text x="44" y="32" opacity="0.6" fontSize="9">Synced 4 hours ago · 142 transactions</text>
         <text x="308" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10" textAnchor="end">SYNCED</text>
       </g>
@@ -139,7 +144,7 @@ const FinanceSVG = (
         <text x="44" y="32" opacity="0.6" fontSize="9">Generated · ready to share</text>
         <text x="308" y="25" fill="#2D5E3E" fontWeight="600" fontSize="10" textAnchor="end">READY</text>
       </g>
-      <text x="40" y="262" opacity="0.5" fontSize="10" fontStyle="italic">— compliance, not chased.</text>
+      <text x="40" y="262" opacity="0.5" fontSize="10" fontStyle="italic">Compliance, not chased.</text>
     </g>
   </svg>
 );
@@ -152,7 +157,7 @@ const LAYERS: LayerInfo[] = [
     body: (
       <>
         Purpose-built on-farm sensors capture what satellites and weather
-        stations miss — soil moisture in the root zone, microclimate variation
+        stations miss: soil moisture in the root zone, microclimate variation
         block-by-block, plant stress signals. <em>The ground truth</em>{" "}
         that makes everything else honest.
       </>
@@ -167,7 +172,7 @@ const LAYERS: LayerInfo[] = [
       <>
         Yield, weather, and risk forecasts that surface confidence as the
         headline, not the footnote.{" "}
-        <em>&ldquo;88% — drops to 42% if frost hits Tuesday.&rdquo;</em>{" "}
+        <em>&ldquo;88%, drops to 42% if frost hits Tuesday.&rdquo;</em>{" "}
         Decisions worth the season they&rsquo;re staking.
       </>
     ),
@@ -179,8 +184,8 @@ const LAYERS: LayerInfo[] = [
     title: "Cashflow and compliance, native to your region.",
     body: (
       <>
-        Launching with Xero, He Waka Eke Noa, Toitū, and freshwater farm plans
-        — built for <em>our</em> paperwork, not adapted from someone else&rsquo;s.
+        Launching with Xero, He Waka Eke Noa, Toitū, and freshwater farm plans,
+        built for <em>our</em> paperwork, not adapted from someone else&rsquo;s.
         The same approach, region by region.
       </>
     ),
@@ -196,6 +201,11 @@ interface LayerCardProps {
 }
 
 function LayerCard({ layer, index, isActive, onActivate }: LayerCardProps) {
+  const handlePointerEnter = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch") return;
+    onActivate(index);
+  };
+
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
@@ -209,7 +219,7 @@ function LayerCard({ layer, index, isActive, onActivate }: LayerCardProps) {
       onClick={() => onActivate(index)}
       onFocus={() => onActivate(index)}
       onKeyDown={handleKeyDown}
-      onMouseEnter={() => onActivate(index)}
+      onPointerEnter={handlePointerEnter}
     >
       <div className="layer-agent-summary">
         <h3 className="layer-agent-name">{layer.tag}</h3>
@@ -249,21 +259,18 @@ export default function PlatformSection() {
               The platform
             </div>
             <h2 ref={titleRef} className="section-title reveal-blur">
-              Three layers — hardware, forecast, finance — designed to{" "}
+              Three layers (hardware, forecast, finance) designed to{" "}
               <em>work together,</em> but each one stands alone.
             </h2>
           </div>
           <p ref={introRef} className="platform-intro reveal">
-            The manual work behind every season — sensing block conditions,
-            forecasting yield and risk, and reconciling finance or compliance —
+            The manual work behind every season: sensing block conditions,
+            forecasting yield and risk, and reconciling finance or compliance,
             handled by focused layers that work together.
           </p>
         </div>
 
-        <div
-          className="layer-agents-showcase"
-          onMouseLeave={() => setActiveLayer(0)}
-        >
+        <div className="layer-agents-showcase">
           <div className="layer-agents-list">
             {LAYERS.map((layer, index) => (
               <LayerCard
@@ -272,10 +279,10 @@ export default function PlatformSection() {
                 index={index}
                 isActive={activeLayer === index}
                 onActivate={setActiveLayer}
-            />
-          ))}
+              />
+            ))}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

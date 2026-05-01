@@ -409,11 +409,6 @@ section.sec {
   color: var(--green-deep);
   font-weight: 400;
 }
-.section-label::before {
-  content: '— ';
-  color: var(--ink-mute);
-  font-style: normal;
-}
 .section-title {
   font-family: var(--serif);
   font-weight: 400;
@@ -596,7 +591,6 @@ section.sec {
 }
 .layer-agent-card.is-active .layer-card-preview {
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(-50%) scale(1);
 }
 .layer-card-preview-surface {

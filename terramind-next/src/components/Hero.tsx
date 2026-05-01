@@ -16,7 +16,7 @@ export default function Hero() {
             <HeroHeadline />
             <p className="lede">
               TerraMind is an agricultural intelligence platform for the
-              world&rsquo;s horticulture growers — orchards, vineyards, berry
+              world&rsquo;s horticulture growers: orchards, vineyards, berry
               farms, and beyond. First prototypes ship June 10, 2026, from
               Aotearoa New Zealand.
             </p>

@@ -7,17 +7,17 @@ const CROPS = [
   {
     crop: "Kiwifruit",
     region:
-      "Launching in Bay of Plenty. Designed for kiwifruit growers globally — green, gold, and red across hemispheres.",
+      "Launching in Bay of Plenty. Designed for kiwifruit growers globally: green, gold, and red across hemispheres.",
   },
   {
     crop: "Viticulture",
     region:
-      "Launching in Marlborough and Central Otago. Designed for vineyards everywhere — premium wine, sparkling, and table grapes.",
+      "Launching in Marlborough and Central Otago. Designed for vineyards everywhere: premium wine, sparkling, and table grapes.",
   },
   {
     crop: "Avocado",
     region:
-      "Launching in Northland and Bay of Plenty. Designed for avocado producers worldwide — alternate-bearing cycles and export quality.",
+      "Launching in Northland and Bay of Plenty. Designed for avocado producers worldwide: alternate-bearing cycles and export quality.",
   },
   {
     crop: "Stone & pipfruit",
